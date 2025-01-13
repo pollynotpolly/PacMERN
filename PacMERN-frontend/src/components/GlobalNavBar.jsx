@@ -30,6 +30,7 @@ const Search = styled('div')(({ theme }) => ({
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
+    maxWidth: '300px',
     height: '65%',
     [theme.breakpoints.up('sm')]: {
         marginLeft: theme.spacing(3),
@@ -181,7 +182,7 @@ const handleMenuIconClose = () => {
     const renderMobileMenu = (
         <Menu>
             <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="#000099">
+                <IconButton size="large" aria-label="link to messages" color="#000099">
                     <Badge badgeContent={4} color="error">
                         <MailIcon />
                     </Badge>
@@ -191,7 +192,7 @@ const handleMenuIconClose = () => {
             <MenuItem>
                 <IconButton
                     size="large"
-                    aria-label="show 17 new notifications"
+                    aria-label="shows notifications"
                     color="inherit"
                 >
                     <Badge badgeContent={17} color="error">
@@ -203,7 +204,7 @@ const handleMenuIconClose = () => {
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
                     size="large"
-                    aria-label="account of current user"
+                    aria-label="link to profile page"
                     aria-controls="primary-search-account-menu"
                     aria-haspopup="true"
                     color="inherit"
@@ -221,7 +222,7 @@ const handleMenuIconClose = () => {
                 position="absolute"
                 sx={{
                     width: '100%',
-                    height: 60,
+                    height: 'auto',
                     padding: '0 10px',
                     backgroundColor: 'white',
                     boxShadow: 'none',
@@ -229,63 +230,94 @@ const handleMenuIconClose = () => {
                     boxSizing: 'border-box',
                 }}
             >
-                <Toolbar>
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="open drawer"
-                    sx={{ mr: 2, mb: 1}}
-                    onClick={handleMenuIconClick}
-                    >
-                <img
-                src={M64} // Replace with the URL or path to your image
-                alt="M64"
-                style={{ width: 60, height: 60 }} // Adjust the size as needed
-                />
-                </IconButton>
+                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'nowrap' }}>
+                    <IconButton
+                 sx={{
+                    mr: 1,
+                    '& img': {
+                      width: 'clamp(30px, 5vw, 60px)', // Responsive image size
+                      height: 'auto',
+                    }
+                  }}
+                >
+                  <img src={M64} alt="M64 logo image, cubed 3D M" />
+              </IconButton>
                 {renderMenuIconDropdown}
 
-
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        color="#000099"
-                        fontSize="55px"
-                        sx={{ display: { xs: 'none', sm: "block" } }}
-                    >
-                        MAKERS<span style={{ fontSize: 30, color: '#ff2d1e', verticalAlign: 'super' }}>64</span>
-                    </Typography>
-                    <Search>
+                <Typography
+                 variant="h6"
+                 noWrap
+                 component="div"
+                 color="#000099"
+                 sx={{
+                 fontSize: 'clamp(1rem, 3vw, 3rem)', // Responsive font size
+                 display: { xs: 'none', sm: 'block' },
+                 }}
+                 >
+                  MAKERS<span style={{ fontSize: '0.6em', color: '#ff2d1e', verticalAlign: 'super' }}>64</span>
+                 </Typography>
+                    <Search sx={{ flexGrow: 1, maxWidth: '300px' }} >
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
                         <StyledInputBase
                             placeholder=""
-                            inputProps={{ 'aria-label': 'search' }}
+                            inputProps={{ 'aria-label': 'search bar' }}
                         />
                     </Search>
 
                     <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex', color: "#069330" } }}>
+                    <Box sx={{
+                      display: 'flex',
+                      gap: '8px',
+                      justifyContent: 'space-around',
+                      width: '100%',
+                      maxWidth: '300px',
+                      mt: { xs: 1, md: 0 }
+                       }}>
                         
                         <IconButton
                             size="large"
                             edge="end"
-                            aria-label="game page"
+                            aria-label="link to games page"
                             aria-haspopup="true"
                             onClick={handleGamePageSubmit}
-                            sx={{ border: "2px solid black", color: 'white', backgroundColor: "#000099", ml: 1 , width: 41, height: 41, borderRadius: '50%', marginRight: '16px'}} 
-                        >
-                            <SportsEsportsIcon />
+                            sx={{
+                                border: "2px solid black",
+                                color: 'white',
+                                backgroundColor: "#000099",
+                                ml: 1,
+                                width: 'clamp(30px, 5vw, 41px)',
+                                height: 'clamp(30px, 5vw, 41px)',
+                                borderRadius: '50%',
+                                marginRight: '8px',
+                                '&:focus': {
+                                outline: '3px solid #FFC001',
+                                outlineOffset: '2px',
+                                },
+                                }}
+                                >
+                            <SportsEsportsIcon sx={{ fontSize: 'clamp(16px, 3vw, 24px)' }} />
                         </IconButton>
 
                         <Link to="/messages">
                             <IconButton
                                 size="large"
-                                aria-label="show 4 new mails"
-                                sx={{ border: "2px solid black", color: 'white', backgroundColor: "#FFC001", mr: 1 , width: 41, height: 41, borderRadius: '50%'}} 
+                                aria-label="link to new messages"
+                                sx={{
+                                    border: "2px solid black",
+                                    color: 'white',
+                                    backgroundColor: "#FFC001",
+                                    ml: 1,
+                                    width: 'clamp(30px, 5vw, 41px)',
+                                    height: 'clamp(30px, 5vw, 41px)',
+                                    borderRadius: '50%',
+                                    marginRight: '8px',
+                                    '&:focus': {
+                                    outline: '3px solid #FFC001',
+                                    outlineOffset: '2px',
+                                    },
+                                    }}
                             >
                                 <Badge  color="error">
                                     <MailIcon />
@@ -295,9 +327,22 @@ const handleMenuIconClose = () => {
 
                         <IconButton
                             size="large"
-                            aria-label="friends"
+                            aria-label="link to friends page"
                             onClick={handleFriendsPageSubmit}
-                            sx={{ border: "2px solid black", color: 'white', backgroundColor: "#069330", mx: 1 , width: 41, height: 41, borderRadius: '50%'}} 
+                            sx={{
+                                border: "2px solid black",
+                                color: 'white',
+                                backgroundColor: "#069330",
+                                ml: 1,
+                                width: 'clamp(30px, 5vw, 41px)',
+                                height: 'clamp(30px, 5vw, 41px)',
+                                borderRadius: '50%',
+                                marginRight: '8px',
+                                '&:focus': {
+                                outline: '3px solid #FFC001',
+                                outlineOffset: '2px',
+                                },
+                                }}
                         >
                             <PeopleIcon />
                         </IconButton>
@@ -305,26 +350,27 @@ const handleMenuIconClose = () => {
                         <IconButton
                             size="large"
                             edge="end"
-                            aria-label="account of current user"
+                            aria-label="link to profile page"
                             aria-haspopup="true"
                             onClick={handleProfileMenuOpen}
-                            sx={{ border: "2px solid black", color: 'white', backgroundColor: "#ff2d1e", ml: 1 , width: 41, height: 41, borderRadius: '50%'}} 
+                            sx={{
+                                border: "2px solid black",
+                                color: 'white',
+                                backgroundColor: "#ff2d1e",
+                                ml: 1,
+                                width: 'clamp(30px, 5vw, 41px)',
+                                height: 'clamp(30px, 5vw, 41px)',
+                                borderRadius: '50%',
+                                marginRight: '8px',
+                                '&:focus': {
+                                outline: '3px solid #FFC001',
+                                outlineOffset: '2px',
+                                },
+                                }}
                         >
                             <AccountCircle />
                         </IconButton>
-                    </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
-                    </Box>
+                    </Box>      
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
