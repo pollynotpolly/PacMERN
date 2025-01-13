@@ -232,13 +232,20 @@ const handleMenuIconClose = () => {
             >
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'nowrap' }}>
                     <IconButton
-                 sx={{
-                    mr: 1,
-                    '& img': {
-                      width: 'clamp(30px, 5vw, 60px)', // Responsive image size
-                      height: 'auto',
-                    }
-                  }}
+                    aria-label='navigation menu'
+                    aria-controls="menu-icon-dropdown"
+                    aria-haspopup="true"
+                    sx={{
+                        mr: 1,
+                        '& img': {
+                          width: 'clamp(30px, 5vw, 60px)',
+                          height: 'auto',
+                        },
+                        '&:focus': {
+                          outline: '3px solid #FFC001',
+                          outlineOffset: '2px',
+                        },
+                      }}
                 >
                   <img src={M64} alt="M64 logo image, cubed 3D M" />
               </IconButton>
@@ -254,14 +261,13 @@ const handleMenuIconClose = () => {
                  display: { xs: 'none', sm: 'block' },
                  }}
                  >
-                  MAKERS<span style={{ fontSize: '0.6em', color: '#ff2d1e', verticalAlign: 'super' }}>64</span>
+                  MAKERS<span style={{ fontSize: '0.6em', color: '#E60000 ', verticalAlign: 'super' }}>64</span>
                  </Typography>
                     <Search sx={{ flexGrow: 1, maxWidth: '300px' }} >
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
                         <StyledInputBase
-                            placeholder=""
                             inputProps={{ 'aria-label': 'search bar' }}
                         />
                     </Search>
@@ -279,7 +285,7 @@ const handleMenuIconClose = () => {
                         <IconButton
                             size="large"
                             edge="end"
-                            aria-label="link to games page"
+                            aria-label="games page"
                             aria-haspopup="true"
                             onClick={handleGamePageSubmit}
                             sx={{
@@ -303,7 +309,7 @@ const handleMenuIconClose = () => {
                         <Link to="/messages">
                             <IconButton
                                 size="large"
-                                aria-label="link to new messages"
+                                aria-label="new messages"
                                 sx={{
                                     border: "2px solid black",
                                     color: 'white',
@@ -327,7 +333,7 @@ const handleMenuIconClose = () => {
 
                         <IconButton
                             size="large"
-                            aria-label="link to friends page"
+                            aria-label="friends page"
                             onClick={handleFriendsPageSubmit}
                             sx={{
                                 border: "2px solid black",
@@ -350,13 +356,13 @@ const handleMenuIconClose = () => {
                         <IconButton
                             size="large"
                             edge="end"
-                            aria-label="link to profile page"
+                            aria-label="profile page"
                             aria-haspopup="true"
                             onClick={handleProfileMenuOpen}
                             sx={{
                                 border: "2px solid black",
                                 color: 'white',
-                                backgroundColor: "#ff2d1e",
+                                backgroundColor: "#E60000",
                                 ml: 1,
                                 width: 'clamp(30px, 5vw, 41px)',
                                 height: 'clamp(30px, 5vw, 41px)',
@@ -370,7 +376,20 @@ const handleMenuIconClose = () => {
                         >
                             <AccountCircle />
                         </IconButton>
-                    </Box>      
+                    </Box>    
+                    
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="show more"
+                            aria-controls={mobileMenuId}
+                            aria-haspopup="true"
+                            onClick={handleMobileMenuOpen}
+                            color="inherit"
+                        >
+                            <MoreIcon />
+                        </IconButton>
+                    </Box>  
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
