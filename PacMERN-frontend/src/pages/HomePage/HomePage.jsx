@@ -7,6 +7,7 @@ import YellowBox from "../../components/YellowBox";
 import GreenBox from "../../components/GreenBox";
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 // import './Homepage.css'
 
 const CustomButton = styled(Button)(({ theme }) => ({
@@ -30,6 +31,9 @@ export const HomePage = () => {
             <div className='home'>
                 <GlobalNavBar />
                 <FixedContainer>
+                <Typography variant="h1" sx={{ position: 'absolute', left: '-9999px' }}>
+                        Home Page
+                    </Typography>
                     <YellowBox>
                         <CustomButton 
                           component={Link} 
