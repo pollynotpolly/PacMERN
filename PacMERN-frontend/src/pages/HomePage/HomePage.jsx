@@ -29,16 +29,20 @@ export const HomePage = () => {
         <>
             <div className='home'>
                 <GlobalNavBar />
-                {/* <img src={MImage} alt="M logo" style={{ width: '70px', height: 'auto', display: 'block', margin: '0 auto' }} /> */}
                 <FixedContainer>
                     <YellowBox>
-                        <CustomButton component={Link} to='/signup'>
+                        <CustomButton 
+                          component={Link} 
+                          to='/signup'
+                          aria-label="Sign up for an account">
                             SIGN UP
                         </CustomButton>
                     </YellowBox>
                     <br />
                     <GreenBox>
-                        <CustomButton component={Link} to='/login'>
+                        <CustomButton component={Link} 
+                         to='/login'
+                         aria-label="Log in to your account">
                             LOG IN
                         </CustomButton>
                     </GreenBox>
