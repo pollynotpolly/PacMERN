@@ -261,6 +261,7 @@ export default function GlobalNavBar() {
                                     fontWeight: 'bold',
                                     textTransform: 'uppercase',
                                     textShadow: 'none', 
+                                    outline: 'none',
                                 }}
                             >
                                 Logout
