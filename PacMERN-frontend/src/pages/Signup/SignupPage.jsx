@@ -78,7 +78,7 @@ export const SignupPage = () => {
                             boxShadow: 3,
                             height: 'auto',
                             p: 4,
-                            borderRadius: 0,
+                            borderRadius: 0,    
                             display: 'flex',
                             flexDirection: 'column', 
                             alignItems: 'center', 
@@ -91,6 +91,7 @@ export const SignupPage = () => {
                             fullWidth
                             margin="normal"
                             label="NAME"
+                            
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
