@@ -29,14 +29,17 @@ export const SignupPage = () => {
             return;
         } else if (password !== confirmPassword) {
             setErrorMessage('Passwords do not match');
+            return;
         } else if (!name) {
             setErrorMessage('Name is required');
+            return;
         } else {
             try {
                 await signup(name, email, password, profileImage);
                 navigate('/login');
+                return;
             } catch (err) {
-                console.error(err);
+                console.error(err); 
                 setErrorMessage(err.message);
             }
         }

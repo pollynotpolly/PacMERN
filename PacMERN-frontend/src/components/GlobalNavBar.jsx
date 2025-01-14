@@ -119,17 +119,29 @@ export default function GlobalNavBar() {
             >
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'nowrap' }}>
                 <Box
-                    sx={{
-                    mr: 1,
-                    '& img': {
-                    width: 'clamp(30px, 5vw, 60px)',
-                    height: 'auto',
-                    },
-                    }}
-                >
-                 <img src={M64} alt="M64 logo image, cubed 3D M" />
-                </Box>
-
+                sx={{
+                mr: 1,
+                 '& img': {
+                 width: 'clamp(30px, 5vw, 60px)',
+                 height: 'auto',
+                },
+                }}
+                aria-label="Go to homepage"
+            >
+            <Link
+             to="/"
+            style={{
+            display: 'inline-block', // Ensures the link wraps the image properly
+            textDecoration: 'none', // Removes any default link styling
+        }}
+    >
+        <img 
+            src={M64} 
+            alt="M64 logo image" 
+            style={{ display: 'block' }} // Ensures the image takes up its full space
+        />
+    </Link>
+</Box>
 
                     <Typography
                         variant="h6"
