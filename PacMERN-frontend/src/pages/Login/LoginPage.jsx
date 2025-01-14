@@ -36,27 +36,29 @@ export const LoginPage = () => {
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     };
+  };
 
     return (
       <>
         <Typography
-      variant="h4"
-      sx={{ 
-        fontFamily: theme.typography.fontFamily, 
-        textAlign: 'center', 
-        mb: 3, 
-        color: theme.palette.text.primary,
-      }}
-    >
-      LOG IN
-    </Typography>
-        <Box 
-          sx={{ 
-            width: '100vw', 
+          variant="h4"
+          sx={{
+            fontFamily: theme.typography.fontFamily,
+            textAlign: 'center',
+            mb: 3,
+            color: theme.palette.text.primary,
+          }}
+          id="login-heading"
+        >
+          LOG IN
+        </Typography>
+        <Box
+          sx={{
+            width: '100vw',
             height: 'auto',
-            bgcolor: theme.palette.primary.main, 
-            marginX: 'calc(50% - 50vw)', 
-            paddingY: '5vw', 
+            bgcolor: theme.palette.primary.main,
+            marginX: 'calc(50% - 50vw)',
+            paddingY: '5vw',
             borderTop: '3px solid black',
             borderBottom: '3px solid black',
           }}
@@ -66,8 +68,8 @@ export const LoginPage = () => {
               component='form'
               onSubmit={handleSubmit}
               noValidate
-              sx={{ 
-                bgcolor: theme.palette.green.main, 
+              sx={{
+                bgcolor: theme.palette.green.main,
                 border: '3px solid black',
                 boxShadow: 3,
                 height: 'auto',
@@ -79,76 +81,103 @@ export const LoginPage = () => {
                 gap: 2, // Add gap between items
               }}
             >
-              <GlobalNavBar/>
-                 {/* Email Field */}
-                 <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            aria-required="true"
-                            aria-describedby="email-help-text email-error"
-                            aria-invalid={errors ? 'true' : 'false'}
-                        />
-                        <div id="email-help-text" style={{ display: 'none' }}>
-                            Enter your email address.
-                        </div>
-
-                        {/* Password Field */}
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            aria-required="true"
-                            aria-describedby="password-help-text password-error"
-                            aria-invalid={errors ? 'true' : 'false'}
-                        />
-                        <div id="password-help-text" style={{ display: 'none' }}>
-                            Password entered incorrectly.
-                        </div>
-
-                        {/* Submit Button */}
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="outlined"
-                            sx={{
-                                mt: 3,
-                                mb: 2,
-                                border: '3px solid black',
-                                borderRadius: 0,
-                                fontSize: 20,
-                                bgcolor: theme.palette.background.default,
-                                boxShadow: '-10px 8px 12px rgba(0, 0, 0, 0.2)',
-                                '&:hover': {
-                                    backgroundColor: '#D3D3D3',
-                                    border: '3px solid black',
-                                    color: '#000099',
-                                },
-                                color: theme.palette.text.primary,
-                            }}
-                            aria-label="Sign In"
-                        >
-                            Sign In
-                        </Button>
-                  <Grid container justifyContent="flex-end">
+              <GlobalNavBar />
+    
+              {/* Email Field */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                aria-required="true"
+                aria-describedby="email-help-text email-error"
+                aria-labelledby="email-label"
+                aria-invalid={errors ? 'true' : 'false'}
+              />
+              <div id="email-help-text" style={{ display: 'none' }}>
+                Enter your email address.
+              </div>
+              {errors && errors.includes('email') && (
+                <div
+                  id="email-error"
+                  style={{ color: 'red' }}
+                  role="alert"
+                  aria-live="assertive"
+                >
+                  {errors}
+                </div>
+              )}
+    
+              {/* Password Field */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                aria-required="true"
+                aria-describedby="password-help-text password-error"
+                aria-labelledby="password-label"
+                aria-invalid={errors ? 'true' : 'false'}
+              />
+              <div id="password-help-text" style={{ display: 'none' }}>
+                Password entered incorrectly.
+              </div>
+              {errors && errors.includes('password') && (
+                <div
+                  id="password-error"
+                  style={{ color: 'red' }}
+                  role="alert"
+                  aria-live="assertive"
+                >
+                  {errors}
+                </div>
+              )}
+    
+              {/* Submit Button */}
+              <Button
+                type="submit"
+                fullWidth
+                variant="outlined"
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  border: '3px solid black',
+                  borderRadius: 0,
+                  fontSize: 20,
+                  bgcolor: theme.palette.background.default,
+                  boxShadow: '-10px 8px 12px rgba(0, 0, 0, 0.2)',
+                  '&:focus': {
+                    outline: '3px solid blue',  // Adding clear focus outline for keyboard users
+                  },
+                  '&:hover': {
+                    backgroundColor: '#D3D3D3',
+                    border: '3px solid black',
+                    color: '#000099',
+                  },
+                  color: theme.palette.text.primary,
+                }}
+                aria-label="Sign In"
+              >
+                Sign In
+              </Button>
+    
+              <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Typography variant="body2" sx={{ mt: 2 }}>
-                    <Link 
-                      to='/signup' 
+                    <Link
+                      to='/signup'
                       style={{
                         color: theme.palette.text.primary,
                         textDecoration: 'underline',
@@ -162,11 +191,20 @@ export const LoginPage = () => {
               </Grid>
             </Box>
           </Container>
-            {errors && <p className='error-message' style={{color: "red", fontFamily: theme.typography.fontFamily}}>{errors}</p>}
+          {errors && (
+            <p
+              className='error-message'
+              style={{ color: 'red', fontFamily: theme.typography.fontFamily }}
+              role="alert"
+              aria-live="assertive"
+            >
+              {errors}
+            </p>
+          )}
         </Box>
-        <Footer/>
+        <Footer />
       </>
     );
-};
+    
 
 

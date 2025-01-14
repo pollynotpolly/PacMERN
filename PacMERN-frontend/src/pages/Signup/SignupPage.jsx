@@ -44,7 +44,7 @@ export const SignupPage = () => {
 
     return (
         <>
-                <Typography 
+            <Typography 
                 variant="h4"
                 sx={{ 
                     fontFamily: theme.typography.fontFamily, 
@@ -86,7 +86,7 @@ export const SignupPage = () => {
                         }}
                     >
                         <GlobalNavBar />
-    
+
                         <TextField
                             fullWidth
                             margin="normal"
@@ -96,6 +96,7 @@ export const SignupPage = () => {
                             required
                             aria-required="true"
                             aria-describedby="name-help-text"
+                            aria-labelledby="name-label"
                         />
                         <div id="name-help-text" style={{ display: 'none' }}>Please enter your full name.</div>
 
@@ -110,10 +111,20 @@ export const SignupPage = () => {
                             required
                             aria-required="true"
                             aria-describedby="email-help-text"
-                            aria-invalid={errorMessage.includes('email') ? 'true' : 'false'}
+                            aria-labelledby="email-label"
+                            aria-invalid={errorMessage.includes('Invalid email address format') ? 'true' : 'false'}
                         />
                         <div id="email-help-text" style={{ display: 'none' }}>Enter a valid email address (e.g., user@example.com).</div>
-                        {errorMessage.includes('email') && <div id="email-error" style={{ color: 'red' }}>{errorMessage}</div>}
+                        {errorMessage.includes('Invalid email address format') && (
+                            <div
+                                id="email-error"
+                                style={{ color: 'red' }}
+                                role="alert"
+                                aria-live="assertive"
+                            >
+                                {errorMessage}
+                            </div>
+                        )}
 
                         {/* Password Field */}
                         <TextField
@@ -129,7 +140,16 @@ export const SignupPage = () => {
                             aria-invalid={errorMessage.includes('Passwords do not match') ? 'true' : 'false'}
                         />
                         <div id="password-help-text" style={{ display: 'none' }}>Your password must be at least 8 characters long.</div>
-                        {errorMessage.includes('Passwords do not match') && <div id="password-error" style={{ color: 'red' }}>{errorMessage}</div>}
+                        {errorMessage.includes('Passwords do not match') && (
+                            <div
+                                id="password-error"
+                                style={{ color: 'red' }}
+                                role="alert"
+                                aria-live="assertive"
+                            >
+                                {errorMessage}
+                            </div>
+                        )}
 
                         {/* Confirm Password Field */}
                         <TextField
@@ -146,17 +166,6 @@ export const SignupPage = () => {
                         />
                         <div id="confirm-password-help-text" style={{ display: 'none' }}>Please confirm your password.</div>
                         
-                        {/* Profile Image URL Field (Optional) */}
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            label="PROFILE IMAGE URL (optional)"
-                            value={profileImage}
-                            onChange={(e) => setProfileImage(e.target.value)}
-                            aria-describedby="profile-image-help-text"
-                        />
-                        <div id="profile-image-help-text" style={{ display: 'none' }}>Optional: Add a URL for your profile image.</div>
-
                         {/* Submit Button */}
                         <Button
                             type="submit"
@@ -169,6 +178,9 @@ export const SignupPage = () => {
                                 fontSize: 20,
                                 bgcolor: theme.palette.background.default,
                                 boxShadow: '-10px 8px 12px rgba(0, 0, 0, 0.2)',
+                                '&:focus': {
+                                    outline: '3px solid blue',  // Adding clear focus outline for keyboard users
+                                },
                                 '&:hover': {
                                     backgroundColor: '#D3D3D3',
                                     border: '3px solid black',
@@ -182,23 +194,25 @@ export const SignupPage = () => {
                         </Button>
 
                         <Grid container justifyContent="center">
-                           <Grid item>
-                             <Typography variant="body2" sx={{ mt: 2 }}>
-                             <Link to="/login"
-                             style={{
-                                color: theme.palette.text.primary,
-                                textDecoration: 'underline',
-                                fontWeight: 'bold',
-                              }}>
-                                {"ALREADY HAVE AN ACCOUNT? SIGN IN!"}
-                        </Link>
-                        </Typography>
-                    </Grid>
-                </Grid>
+                            <Grid item>
+                                <Typography variant="body2" sx={{ mt: 2 }}>
+                                    <Link
+                                        to="/login"
+                                        style={{
+                                            color: theme.palette.text.primary,
+                                            textDecoration: 'underline',
+                                            fontWeight: 'bold',
+                                        }}
+                                    >
+                                        {"ALREADY HAVE AN ACCOUNT? SIGN IN!"}
+                                    </Link>
+                                </Typography>
+                            </Grid>
+                        </Grid>
                     </Box>
                 </Container>
             </Box>
-    
+
             <Footer />
         </>
     );
